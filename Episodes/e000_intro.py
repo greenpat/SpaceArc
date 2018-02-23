@@ -48,10 +48,10 @@ Please select an option.''',
         
         For a time, the collective energy of the world tilts toward extraplanetary exploration. Research into sustainable interstellar travel flourishes. Money pours into eccentric propulsion systems. All people are invited to participate in the celebration of science.
         
-        ''')
+        ''', wipe=False)
         pause()
         saprint('''
-        The wayward star Gliese 709 makes an uninvited pass through humankinds solar system, plunging a system which had found order for hundreds of thousands of years into chaos. A vast number of frozen, dormant Oort objects are dragged back into near-Earth trajectory. A number of irregular moons of Neptune and Uranus collide with their parent planets. At least one is thrown towards the inner solar system.
+        The wayward star Gliese 709 makes an uninvited pass through humankind's solar system, plunging a system which had found order for hundreds of thousands of years into chaos. A vast number of frozen, dormant Oort objects are dragged back into near-Earth trajectory. A number of irregular moons of Neptune and Uranus collide with their parent planets. At least one is thrown towards the inner solar system.
         
         Humankind feverishly calculates collision paths and refurbishes its nuclear arsenal. It is all too uncertain whether the candle of civilization will finally be snuffed out.
         

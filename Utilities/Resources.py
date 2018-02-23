@@ -1,8 +1,5 @@
-from Classes.Actor import Actor
-from Classes.Effect import Effect
-from Classes.Item import Item
+from Classes import *
 from Utilities.Text import *
-import random
 
 # This file contains
 
