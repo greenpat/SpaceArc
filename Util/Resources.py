@@ -1,11 +1,9 @@
 from Classes import *
-from Utilities.Text import *
+from Util.Text import *
 
 # This file contains
 
 player = Actor(life=100, strength=3, speed=3, intellect=3, tenacity=3)
-
-player_default = Actor("Testronaut", life = 100, energy = 100, strength = 4, speed = 4, intellect = 4, tenacity = 4)
 
 game = {
     'next': 'e000_intro',

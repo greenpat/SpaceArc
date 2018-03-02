@@ -1,4 +1,4 @@
-from Utilities.Resources import *
+from Util.Resources import *
 
 print("This is a test scenario")
 

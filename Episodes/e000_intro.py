@@ -1,4 +1,4 @@
-from Utilities.Resources import *
+from Util.Resources import *
 
 if True:
     phase()

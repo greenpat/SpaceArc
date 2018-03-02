@@ -5,13 +5,13 @@ while continue_playing_the_game:
 
     # loads shared resources (which encounters also utilize)
     # includes "player" which is the central focus of game
-    from Utilities.Resources import *
+    from Util.Resources import *
 
     # game contains info about your single game session
     # dead can be good or bad
     while game['dead']==False:
 
-        # Refer to Utilities.Resources
+        # Refer to Util.Resources
         game['prev'] = game['next']
 
         # Allows for replay of same scenario
@@ -48,8 +48,8 @@ while continue_playing_the_game:
     if c == 1:
         clrscr()
         # Player instantiated in this module - wiping clean
-        del sys.modules['Utilities.Resources']
-        from Utilities.Resources import *
+        del sys.modules['Util.Resources']
+        from Util.Resources import *
         game['next'] = 'e001_start'
         phase()
     elif c == 2:

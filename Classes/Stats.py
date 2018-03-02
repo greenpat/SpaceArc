@@ -1,6 +1,18 @@
 class Stats:
-    attribs = ['life', 'energy', 'strength', 'speed', 'intellect', 'tenacity']
+    attribs = ['strength', 'speed', 'intellect', 'tenacity']
 
+    def __init__(self,
+                 strength=0,
+                 speed=0,
+                 intellect=0,
+                 tenacity=0
+                 ):
+        self.strength = int(strength)
+        self.speed = int(speed)
+        self.intellect = int(intellect)
+        self.tenacity = int(tenacity)
+
+    # combine adds stats objects together and returns a single stats object
     @staticmethod
     def combine(*args: 'Stats'):
         for tba in args:  # tba 'to be added'
@@ -11,30 +23,17 @@ class Stats:
                 setattr(return_stats, stat, getattr(return_stats, stat) + getattr(tba, stat))
         return (return_stats)
 
-    def __init__(self,
-                 life=0,
-                 energy=0,
-                 strength=0,
-                 speed=0,
-                 intellect=0,
-                 tenacity=0
-                 ):
-        self.life = int(life)
-        self.energy = int(energy)
-        self.strength = int(strength)
-        self.speed = int(speed)
-        self.intellect = int(intellect)
-        self.tenacity = int(tenacity)
-
-    def reset(self):
+    # set all stats to default value
+    def reset(self, default_value=0):
         for stat in self.__dict__:
-            setattr(self, stat, 0)
+            setattr(self, stat, default_value)
 
+    # all stats get multiplied - unsure if actually useful
     def multiply(self, x):
-        # all stats get multiplied
         for stat in Stats.attribs:
             setattr(self, stat, getattr(self, stat) * x)
 
+    # Permanently modify a stats by adding another stats
     def add(self, other_stats: 'Stats'):
         assert (isinstance(other_stats, Stats))
         for stat in self.__dict__:
