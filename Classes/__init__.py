@@ -1,7 +1,6 @@
-#__all__ = ['Stats','Item','Inventory','Effect','Actor']
+__all__ = ['Stats','Item','Effect','Actor']
 
-from Classes.Stats import *
-from Classes.Effect import *
-from Classes.Item import *
-from Classes.Inventory import *
-from Classes.Actor import *
+from Classes.Stats import Stats
+from Classes.Item import Item
+from Classes.Effect import Effect
+from Classes.Actor import Actor
