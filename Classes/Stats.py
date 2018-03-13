@@ -14,8 +14,9 @@ class Stats:
         self.tenacity = int(tenacity)
 
     def __str__(self):
-        return (f"Strength: {self.strength: >2}   Speed: {self.speed: >2}   " +
-                f"Intellect: {self.intellect: >2}    Tenacity: {self.tenacity: >2}")
+        return (
+            f"Strength: {self.strength: >2}     Speed: {self.speed: >2}     " +
+            f"Intellect: {self.intellect: >2}      Tenacity: {self.tenacity: >2}")
 
     # combine adds stats objects together and returns a single stats object
     @staticmethod
@@ -47,10 +48,11 @@ class Stats:
 
 
 if __name__ == '__main__':
+
     a = Stats(strength=3)
     print(a.__dict__)
     b = Stats(strength=1, intellect=4)
     print(b.__dict__)
     print(Stats.combine(a, b).__dict__)
     print(a)
-    print('%'*80)
+    print('%' * 80)

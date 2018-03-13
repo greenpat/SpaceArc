@@ -1,2 +1,2 @@
-from Util import *
-from Classes import *
+import Obj
+import Text

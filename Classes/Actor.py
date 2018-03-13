@@ -32,7 +32,8 @@ class Actor:
         [print('[' + str(i) + ']', end=' ') for i in self.effects]
         print("")
         print(self.stats)
-        print("="*80)
+        print("=" * 80)
+
 
 if __name__ == '__main__':
     test_actor = Actor(name='Testronaut', strength=3,

@@ -13,6 +13,7 @@ def saprint(docstring = '', wipe = True, topline = True):
     docstring = re.sub('\n[ \\t]+|[ \\t]+\n','\n', docstring)  # get rid of SOL spaces
     docstring = re.sub('(?<!\\n)\n(?!\\n)',' ', docstring)  # get rid of single newlines
     docstring = docstring.split('\n')
+    print('')
     for i in range(0, len(docstring)):
         words_to_print = docstring[i].split(' ')
         if words_to_print[0] == '':
@@ -25,7 +26,6 @@ def saprint(docstring = '', wipe = True, topline = True):
                 line_length = 0
             line_length += (len(words_to_print[0])+1)
             print(words_to_print.pop(0), end=' ', flush=True)
-        print('')
 
 def clrscr():
     print('\n'*100)
@@ -36,7 +36,6 @@ def line():
 def pause(prompt:str = '(Press enter)'):
     print('')
     input(prompt)
-    print('')
 
 def phase():
     picture = r'''
