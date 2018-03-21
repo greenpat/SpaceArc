@@ -1,5 +1,8 @@
 class Stats:
-    # These attribs are core game design - there will only be four
+    """
+    An object represting core stats - inherited by items, effects
+    """
+
     attribs = ['strength', 'speed', 'intellect', 'tenacity']
 
     def __init__(self,
@@ -21,12 +24,16 @@ class Stats:
     # combine adds stats objects together and returns a single stats object
     @staticmethod
     def combine(*args: 'Stats'):
+        """
+        :param args: objects of type Stats or inheriting from
+        :return: a Stats object with attributes equal to the combined sum
+        """
         assert all(isinstance(arg, Stats) for arg in args)
         return_stats = Stats()
         for stat in Stats.attribs:
-            for tba in args:
+            for _ in args:
                 setattr(return_stats, stat,
-                        getattr(return_stats, stat) + getattr(tba, stat))
+                        getattr(return_stats, stat) + getattr(_, stat))
         return (return_stats)
 
     # set all stats to default value
@@ -48,11 +55,15 @@ class Stats:
 
 
 if __name__ == '__main__':
+    a = Stats(strength=3, intellect=3)
+    b = Stats(strength=1, intellect=-1)
+    c = Stats(tenacity=5)
+    print(Stats.combine(a, b, c).__dict__)
+    print('that')
 
-    a = Stats(strength=3)
-    print(a.__dict__)
-    b = Stats(strength=1, intellect=4)
-    print(b.__dict__)
-    print(Stats.combine(a, b).__dict__)
-    print(a)
-    print('%' * 80)
+    from test.test_Stats import *
+
+    unittest.main()
+
+    print('this')
+    Tests.Test_Stats.unittest.main()

@@ -27,13 +27,6 @@ class Stats_Test(unittest.TestCase):
         self.assertEqual(self.stats2.intellect, -2)
         self.assertEqual(self.stats2.tenacity, 1)
 
-    def test_purposely_fail(self):
-        try:
-            self.assertEqual(self.stats1.strength, 1010101010,
-                         'This is actually fine')
-        except:
-            self.assertEqual(True,True)
-
     def test_reset(self):
         self.stats3.reset(100)
         self.assertEqual(self.stats3.strength, 100)
@@ -45,4 +38,5 @@ class Stats_Test(unittest.TestCase):
         del (self)
 
 
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()
