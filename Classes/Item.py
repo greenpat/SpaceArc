@@ -2,6 +2,9 @@ from Classes import Stats
 
 
 class Item(Stats):
+    """
+    Inherits from stats, represents physical items that character has access to
+    """
     def __init__(self, name='Item', temporary=False, **kwargs):
         self.name = name
         self.temporary = temporary

@@ -2,7 +2,7 @@ import unittest
 from Classes.Stats import Stats
 
 
-class Stats_Test(unittest.TestCase):
+class test_Stats(unittest.TestCase):
     def setUp(self):
         self.stats1 = Stats(strength=2, speed=8, intellect=12, tenacity=1)
         self.stats2 = Stats(strength=0, speed=10, intellect=-2, tenacity=1)
@@ -29,10 +29,8 @@ class Stats_Test(unittest.TestCase):
 
     def test_reset(self):
         self.stats3.reset(100)
-        self.assertEqual(self.stats3.strength, 100)
-        self.assertEqual(self.stats3.speed, 100)
-        self.assertEqual(self.stats3.intellect, 100)
-        self.assertEqual(self.stats3.tenacity, 100)
+        for _ in Stats.attribs:
+            self.assertTrue(getattr(self.stats3, _) == 100)
 
     def tearDown(self):
         del (self)

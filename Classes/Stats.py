@@ -21,10 +21,11 @@ class Stats:
             f"Strength: {self.strength: >2}     Speed: {self.speed: >2}     " +
             f"Intellect: {self.intellect: >2}      Tenacity: {self.tenacity: >2}")
 
-    # combine adds stats objects together and returns a single stats object
     @staticmethod
     def combine(*args: 'Stats'):
         """
+        Combine stats objects together and return a single stats object
+
         :param args: objects of type Stats or inheriting from
         :return: a Stats object with attributes equal to the combined sum
         """
@@ -41,7 +42,7 @@ class Stats:
         for stat in self.__dict__:
             setattr(self, stat, default_value)
 
-    # all stats get multiplied - unsure if actually useful
+    # all stats get multiplied by a constant
     def multiply(self, x):
         for stat in Stats.attribs:
             setattr(self, stat, getattr(self, stat) * x)
