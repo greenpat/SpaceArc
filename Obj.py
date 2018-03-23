@@ -113,6 +113,7 @@ def opt(prompt, choices, possible=None, suppress_display=False,
                 valid_selected = True
         except:
             valid_selected = False
+            user_choice = 999
     selected_value = shown_choices[user_choice - 1]
     return_value = choices.index(selected_value) + 1
     if return_text:
