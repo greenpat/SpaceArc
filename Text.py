@@ -9,40 +9,60 @@ ultimately display to the player. The assumption for SpaceArc is that the window
 will be 80 characters wide.
 """
 
-def saprint(docstring = '', wipe=True, topline=True):
+
+def saprint(docstring='', wipe=True, topline=True):
     """
     :param docstring: long, messy string to be formatted
     :param wipe: whether the current display will be wiped clean
     :param topline: whether a line will precede text
-    :param width: how many chars wide before newline
-    :return: cleaned up string
+    :return: None, print cleaned string as side effect
     """
     if wipe: clrscr()
     if topline: line()
 
-    s = re.sub('\t',' ',docstring)  # leading tabs (common) replaced throughout
-    s = re.sub('^[\\n\\s]+|[\\n\\s]+$','',s)  # leading/trailing space removed
-    s = re.sub('[\\n\\s]{2,}','\n\n',s)  # extra space of any type becomes newlines
+    # Clean initial input text
+    s = re.sub('\t', ' ',
+               docstring)  # leading tabs (common) replaced throughout
+    s = re.sub('^[\\n\\s]+|[\\n\\s]+$', '', s)  # leading/trailing space removed
+    s = re.sub('[\\n\\s]{2,}', ' {eol} ', s)  # marker for empty lines
 
-    # Replace lines with shorter lines up to 80 chars
-    print(re.sub('([\\w .,]{0,80})(?![\\w .,]+$)[ \\n]','\\1\\n',s))
+    # Print up to 80 chars wide but preserve paragraphs
+    s = s.split(' ')
+    nchar = 0
+    while s:
+        c = s.pop(0)
+        if c == '{eol}':
+            print('\n')
+            nchar = 0
+            continue
+        elif nchar + len(c) > 80:
+            print('')
+            nchar = 0
+        print(c, end=' ')
+        nchar = nchar + len(c) + 1
+    print('')
+
 
 # Not true clear screen but should empty the visible command prompt
 def clrscr():
-    print('\n'*100)
+    print('\n' * 100)
+
 
 # Print the default line of characters
 def line(char='-'):
-    print(char*80)
+    print(char * 80)
+
 
 # Briefly break text by requiring user to push button
-def pause(prompt:str = '(Press enter)'):
+def pause(prompt: str = '(Press enter)'):
     print('')
     input(prompt)
 
+
 # Standard user prompt with logic to govern choice availability
 def opt(prompt, choices, possible=None, suppress_display=False,
-        return_text=False, wipe=True, prompt_as_is: bool = False, topline=True):
+        return_text=False, wipe=True, prompt_as_is: bool = False,
+        topline=False):
     """
     :param prompt: The text presented to the player
     :param choices: A list of all possible dialogue choices
@@ -56,24 +76,30 @@ def opt(prompt, choices, possible=None, suppress_display=False,
         If there are "unavailable" choices then there will be a mapping process
         If return_text is true then chosen text is returned instead
     """
+    valid_selected = False
+
     if possible == None:
         possible = [True] * len(choices)
     shown_choices = [c for c, p in zip(choices, possible) if p == True]
-    valid_selected = False
+
     while (not valid_selected):
-        if wipe:
-            clrscr()
-        if topline:
-            line()
+
+        # Secion 1: Prompt
+        if wipe: clrscr()
+        if topline: line()
         if prompt_as_is:
             print(prompt)
         else:
             saprint(prompt, wipe=False, topline=False)
+
+        # Section 2: Choices
         print('')
         for i in range(len(shown_choices)):
             print(str(i + 1) + ': ', shown_choices[i])
         if not suppress_display:
-            player.display()
+            Obj.player.display()
+
+        # Section 3: Input
         user_choice = input('[>')
         if user_choice == 'q':
             print("QUITTING GAME")
@@ -84,14 +110,16 @@ def opt(prompt, choices, possible=None, suppress_display=False,
                 valid_selected = True
         except:
             valid_selected = False
-            user_choice = 999
-    selected_value = shown_choices[user_choice - 1]
-    return_value = choices.index(selected_value) + 1
-    if return_text:
-        return_value = choices[return_value - 1]
-    return (return_value)
 
-def statroll(statname: str, player = Obj.player):
+    # Section 4: Return Value
+    selection = shown_choices[user_choice - 1]
+    if return_text:
+        return selection
+    else:
+        return choices.index(selection) + 1
+
+
+def statroll(statname: str, player=Obj.player):
     """
     :param statname: a string, one of Classes.Stats.attribs or 'random'
     :player: the Actor whose stats are being rolled on
@@ -106,6 +134,7 @@ def statroll(statname: str, player = Obj.player):
         input('< Challenge: [' + statname.capitalize() + '] ' + str(
             num) + ' >')
         return (sum([random.randint(0, 2) for x in range(num)]))
+
 
 # blastoff animation
 def phase():

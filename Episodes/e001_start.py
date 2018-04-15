@@ -198,5 +198,5 @@ elif c == 5:
 player.display()
 pause()
 
-game['next'] = 'e002_infiltration'
-game['turns'] -= 1  # This chapter doesn't count
+Obj.game['next'] = 'e002_infiltration'
+Obj.game['turns'] -= 1  # This chapter doesn't count

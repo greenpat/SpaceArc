@@ -18,7 +18,7 @@ c = None
 # Graffiti, Rounded, Speed, Avatar, Small Slant
 
 while c != 3:
-    c = Obj.opt(r'''
+    c = opt(r'''
 / ___\/  __\/  _ \/   _\/  __//  _ \/  __\/   _\
 |    \|  \/|| / \||  /  |  \  | / \||  \/||  /  
 \___ ||  __/| |-|||  \_ |  /_ | |-|||    /|  \_ 
@@ -80,5 +80,5 @@ Please select an option.''',
             print('----'*(i % 80)+'>>>', flush=True)
             #time.sleep(.1)
 
-game['next'] = 'e001_start'
-game['turns'] -= 1  # this chapter doesn't count
+Obj.game['next'] = 'e001_start'
+Obj.game['turns'] -= 1  # this chapter doesn't count
