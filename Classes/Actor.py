@@ -2,7 +2,6 @@ from Classes import Stats
 from Classes import Item
 from Classes import Effect
 
-
 class Actor:
     def __init__(self, name='Actor', **kwargs):
         self.name = name

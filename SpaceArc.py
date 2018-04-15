@@ -5,29 +5,28 @@ while continue_playing_the_game:
 
     # loads shared resources (which encounters also utilize)
     # includes "player" which is the central focus of game
-    from Util.Resources import *
+    import Obj
+    import Text
+    import time
+
+    # Default beginning
+    Obj.game_restart()
 
     # game contains info about your single game session
     # dead can be good or bad
-    while game['dead']==False:
+    while Obj.game['dead']==False:
 
-        # Refer to Util.Resources
-        game['prev'] = game['next']
+        # On verge of moving forward, passing 'next' to 'prev'
+        Obj.game['prev'] = Obj.game['next']
 
-        # Allows for replay of same scenario
-        try:
-            del sys.modules['Episodes.'+game['next']]
-        except:
-            assert(True)
-
-        # Run the chapter!! Good luck!
-        __import__('Episodes.'+game['next'])
+        # Run the chapter! Good luck!!
+        __import__('Episodes.'+Obj.game['next'])
 
         # Remove old chapter artifacts
         try:
             del sys.modules['Episodes.'+game['prev']]
         except:
-            assert(True)
+            pass
 
         # This could be considered a "score"
         game['turns'] += 1
@@ -48,10 +47,8 @@ while continue_playing_the_game:
     if c == 1:
         clrscr()
         # Player instantiated in this module - wiping clean
-        del sys.modules['Util.Resources']
-        from Util.Resources import *
         game['next'] = 'e001_start'
-        phase()
+        Text.phase()
     elif c == 2:
         continue_playing_the_game = False
 

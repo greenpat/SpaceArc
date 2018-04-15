@@ -1,4 +1,6 @@
-from Util.Resources import *
+from Text import *
+import time
+import Obj
 
 if True:
     phase()
@@ -16,7 +18,7 @@ c = None
 # Graffiti, Rounded, Speed, Avatar, Small Slant
 
 while c != 3:
-    c = opt(r'''
+    c = Obj.opt(r'''
 / ___\/  __\/  _ \/   _\/  __//  _ \/  __\/   _\
 |    \|  \/|| / \||  /  |  \  | / \||  \/||  /  
 \___ ||  __/| |-|||  \_ |  /_ | |-|||    /|  \_ 
