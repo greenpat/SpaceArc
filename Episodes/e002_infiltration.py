@@ -1,4 +1,5 @@
-from Util.Resources import *
+from Text import *
+import Obj
 
 clrscr()
 line()
@@ -47,7 +48,7 @@ def couch():
              'Change strategies.',
              '[Social] Dial the regional ark site manager.'],
             possible=[True,True,True,
-                      effects['Social'] in player.effects and not 'permit' in props
+                      Obj.effects['Social'] in Obj.player.effects and not 'permit' in props
                       ])
     if c == 1: loc = 'grounded'
     if c == 2: loc = 'earth'
@@ -59,7 +60,7 @@ def couch():
         "I'm going to be honest with you. I need your help getting aboard the ark."
         
         You argue for some time.
-        '''.format(player.name))
+        '''.format(Obj.player.name))
         roll = statroll('tenacity')
         if roll >= 5:
             saprint('''
@@ -68,7 +69,7 @@ def couch():
             Tell the sentry to issue a contingency pass with temporary authorization 'Esperanto' ... and for God's sake don't hurt anyone."
             ''')
             props.append('permit')
-            player.effects.append(effects['Password'])
+            Obj.player.effects.append(Obj.effects['Password'])
             loc = 'home'
             pause('<You have learned a password.>')
         else:
@@ -86,7 +87,7 @@ def earth():
             
             It doesn\'t matter how you eventually die, nothing is worse than life without imagination.
             ''')
-    game['dead'] = 'Didn\'t even try.'
+    Obj.game['dead'] = 'Didn\'t even try.'
 
 def grounded():
     global loc
@@ -101,7 +102,7 @@ def grounded():
         windows and setting off car alarms. The newscasters announce what you
         already knew. The ark has left. You might as well get comfortable.
         ''')
-        game['dead'] = 'Grounded by indecisiveness.'
+        Obj.game['dead'] = 'Grounded by indecisiveness.'
     elif c == 2:
         loc = 'earth'
     elif c == 3:
@@ -110,11 +111,11 @@ def grounded():
         a thunderous roar sweeps through the town, shattering windows and setting
         off car alarms. You might as well go back inside and get comfortable.
         ''')
-        game['dead'] = 'Grounded by indecisiveness.'
+        Obj.game['dead'] = 'Grounded by indecisiveness.'
 
 def checkpoint():
     global loc
-    if effects['Reckless'] in player.effects:
+    if Obj.effects['Reckless'] in Obj.player.effects:
         c = opt('''You drive towards the checkpoint...''',
                 choices=['Slow to a stop at the guard post','[Reckless] Ram the booth'])
         if c == 2:
@@ -141,13 +142,13 @@ def checkpoint():
             ],
             possible=[
                 True,
-                effects['Password'] in player.effects,
-                items['Money'] in player.inventory.items,
-                effects['Empathetic'] in player.effects and not 'empathize_with_guard' in props,
-                items['Tazer'] in player.inventory.items,
-                items['Dog'] in player.inventory.items,
-                effects['Physical'] in player.effects,
-                items['Lye'] in player.inventory.items
+                Obj.effects['Password'] in Obj.player.effects,
+                Obj.items['Money'] in Obj.player.items,
+                Obj.effects['Empathetic'] in Obj.player.effects and not 'empathize_with_guard' in props,
+                Obj.items['Tazer'] in Obj.player.items,
+                Obj.items['Dog'] in Obj.player.items,
+                Obj.effects['Physical'] in Obj.player.effects,
+                Obj.items['Lye'] in Obj.player.items
             ]
             )
     if c == 1:
@@ -183,7 +184,7 @@ def checkpoint():
             pause()
         else:
             saprint('"AHH GET BACK! GET ..."\n\nYou are put down by a barrage of anti-personnel rounds.')
-            game['dead'] = 'Swiss cheese\'d'
+            Obj.game['dead'] = 'Swiss cheese\'d'
     if c == 6:
         saprint('"Hey, please keep your dog ... Argh!!"\n\nThe guard is vulnerable to an attack!')
         roll = statroll('strength')
@@ -193,7 +194,7 @@ def checkpoint():
             pause()
         else:
             saprint('"AHH GET BACK! GET ..."\n\nYou and your dog are put down by a barrage of anti-personnel rounds.')
-            game['dead'] = 'Put down like a dog.'
+            Obj.game['dead'] = 'Put down like a dog.'
     if c == 7:
         saprint('"HEY! Get... OFF of me!"\n\nYou struggle with the guard!')
         roll = statroll('strength')
@@ -203,7 +204,7 @@ def checkpoint():
             loc = 'entrance'
         else:
             saprint('"AHH GET BACK! GET ..."\n\nYou are perforated by a barrage of anti-personnel rounds.')
-            game['dead'] = 'Swiss cheese\'d'
+            Obj.game['dead'] = 'Swiss cheese\'d'
     if c == 8:
         saprint('''You hurl the caustic powder at the guard\n\n"URGH! What! ARGHAAA"\n\nNow is your chance!''')
         roll = statroll('speed')
@@ -213,7 +214,7 @@ def checkpoint():
             loc = 'entrance'
         else:
             saprint('"AHH YOU SON OF A! ..."\n\nOne of the bullets fired pierces your calf. You stumble ')
-            game['dead'] = 'Branded a terrorist.'
+            Obj.game['dead'] = 'Branded a terrorist.'
 
 
 def fence():
@@ -232,10 +233,10 @@ def fence():
         ],
         [
             True,
-            effects['Grizzled'] in player.effects,
-            player.stats.speed + player.stats.tenacity >= 7,
+            Obj.effects['Grizzled'] in Obj.player.effects,
+            Obj.player.stats.speed + Obj.player.stats.tenacity >= 7,
             'walked_the_fence' not in props,
-            items['Spiked Boots'] in player.inventory.items,
+            Obj.items['Spiked Boots'] in Obj.player.items,
             'discovered_2nd_entrance' in props
         ]
         )
@@ -288,8 +289,8 @@ def fence2():
             ],
             [
                 'desperate_digits' not in props,
-                effects['Resourceful'] in player.effects and 'pry_control_panel' not in props,
-                effects['Technical'] in player.effects and items['Laptop'] in player.inventory.items,
+                Obj.effects['Resourceful'] in Obj.player.effects and 'pry_control_panel' not in props,
+                Obj.effects['Technical'] in Obj.player.effects and Obj.items['Laptop'] in Obj.player.items,
                 True
             ]
             )
@@ -344,9 +345,9 @@ def shed():
     ],
         [
             True,
-            effects['Biological'] in player.effects and items['Lye'] not in player.inventory.items,
-            effects['Resourceful'] in player.effects and items['Spiked Boots'] not in player.inventory.items,
-            effects['Reckless'] in player.effects and items['Tazer'] in player.inventory.items
+            Obj.effects['Biological'] in Obj.player.effects and Obj.items['Lye'] not in Obj.player.items,
+            Obj.effects['Resourceful'] in Obj.player.effects and Obj.items['Spiked Boots'] not in Obj.player.items,
+            Obj.effects['Reckless'] in Obj.player.effects and Obj.items['Tazer'] in Obj.player.items
         ]
 
         )
@@ -355,11 +356,11 @@ def shed():
     if c == 2:
         saprint('< You grab the caustic bag of lye. >')
         pause()
-        player.inventory.add(items['Lye'])
+        Obj.player.inventory.add(Obj.items['Lye'])
     if c == 3:
         saprint('< You craft a set of spiked boots. >')
         pause()
-        player.inventory.add(items['Spiked Boots'])
+        Obj.player.inventory.add(Obj.items['Spiked Boots'])
     if c == 4:
         saprint('You stoke the cinders until a roaring blaze billows over the top of the treeline!\n\nYou watch the guard post and slip by when the sentry inevitably run towards the fire.')
         pause()
@@ -368,7 +369,7 @@ def shed():
 def entrance():
     global loc
     saprint('Nice job! You made it to the entrance!')
-    game['dead'] = 'you made it to entrance'
+    Obj.game['dead'] = 'you made it to entrance'
 
 locs = {
     'home':home,  # baseline
@@ -382,13 +383,13 @@ locs = {
     'entrance':entrance  # get in
 }
 
-while (game['dead'] == False) and (game['next'] == 'e002_infiltration'):
+while (Obj.game['dead'] == False) and (Obj.game['next'] == 'e002_infiltration'):
     locs[loc]()
 
 # Knock out
-if effects['Password'] in player.effects:
-    player.effects.remove(effects['Password'])
-if items['Spiked Boots'] in player.inventory.items:
-    player.inventory.remove(items['Spiked Boots'])
-if items['Lye'] in player.inventory.items:
-    player.inventory.remove(items['Lye'])
+if Obj.effects['Password'] in Obj.player.effects:
+    Obj.player.effects.remove(Obj.effects['Password'])
+if Obj.items['Spiked Boots'] in Obj.player.items:
+    Obj.player.inventory.remove(Obj.items['Spiked Boots'])
+if Obj.items['Lye'] in Obj.player.items:
+    Obj.player.inventory.remove(Obj.items['Lye'])

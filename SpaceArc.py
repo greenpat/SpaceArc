@@ -6,8 +6,7 @@ while continue_playing_the_game:
     # loads shared resources (which encounters also utilize)
     # includes "player" which is the central focus of game
     import Obj
-    import Text
-    import time
+    from Text import *
 
     # Default beginning
     Obj.game_restart()
@@ -29,14 +28,14 @@ while continue_playing_the_game:
             pass
 
         # This could be considered a "score"
-        game['turns'] += 1
+        Obj.game['turns'] += 1
 
     # Death scenario
     pause()
     clrscr()
     line()
     print('')
-    print(game['dead'])
+    print(Obj.game['dead'])
     print('')
     line()
     print('')
@@ -47,7 +46,7 @@ while continue_playing_the_game:
     if c == 1:
         clrscr()
         # Player instantiated in this module - wiping clean
-        game['next'] = 'e001_start'
+        Obj.game['next'] = 'e001_start'
         Text.phase()
     elif c == 2:
         continue_playing_the_game = False

@@ -24,6 +24,7 @@ def saprint(docstring='', wipe=True, topline=True):
     s = re.sub('\t', ' ',
                docstring)  # leading tabs (common) replaced throughout
     s = re.sub('^[\\n\\s]+|[\\n\\s]+$', '', s)  # leading/trailing space removed
+    s = re.sub('\\n +',' ',s)  # remove all tabbing or single spacing
     s = re.sub('[\\n\\s]{2,}', ' {eol} ', s)  # marker for empty lines
 
     # Print up to 80 chars wide but preserve paragraphs

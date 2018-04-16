@@ -1,4 +1,6 @@
-from Util.Resources import *
+import Obj
+from Text import *
+from Classes import *
 
 clrscr()
 line()
@@ -27,11 +29,11 @@ c1 = opt('You swipe your keys and passport from the bureau.\n\nAs you flip throu
         ['a young','a grown','an old'], suppress_display=True, return_text=True)
 
 if c1 == 'a young':
-    player.base_stats.add(Stats(speed = 2, tenacity = -1))
+    Obj.player.base_stats.add(Stats(speed = 2, tenacity = -1))
 elif c1 == 'a grown':
-    player.base_stats.add(Stats(strength = 2, speed = -1))
+    Obj.player.base_stats.add(Stats(strength = 2, speed = -1))
 elif c1 == 'an old':
-    player.base_stats.add(Stats(tenacity = 2, strength = -1))
+    Obj.player.base_stats.add(Stats(tenacity = 2, strength = -1))
 
 # traits that can impact available choices
 c2 = opt(c1+',\n',
@@ -45,17 +47,17 @@ c2 = opt(c1+',\n',
          ], suppress_display=True, return_text=True, wipe=False)
 
 if c2 == 'spirited':
-    player.effects.append(effects['Spirited'])
+    Obj.player.effects.append(Obj.effects['Spirited'])
 if c2 == 'reckless':
-    player.effects.append(effects['Reckless'])
+    Obj.player.effects.append(Obj.effects['Reckless'])
 if c2 == 'grizzled':
-    player.effects.append(effects['Grizzled'])
+    Obj.player.effects.append(Obj.effects['Grizzled'])
 if c2 == 'resourceful':
-    player.effects.append(effects['Resourceful'])
+    Obj.player.effects.append(Obj.effects['Resourceful'])
 if c2 == 'empathetic':
-    player.effects.append(effects['Empathetic'])
+    Obj.player.effects.append(Obj.effects['Empathetic'])
 if c2 == 'heroic':
-    player.effects.append(effects['Heroic'])
+    Obj.player.effects.append(Obj.effects['Heroic'])
 
 # competencies that can impact available choices
 # social, biological, technical, physical
@@ -79,7 +81,7 @@ line()
 print('')
 print("That's right... you're "+c1+", "+c2+", "+c3+"!\n")
 if c3 == 'augmented reality entertainer':
-    player.effects.append(effects['Social'])
+    Obj.player.effects.append(Obj.effects['Social'])
     saprint('''
     Over two hundred years ago people first started designing machine interfaces for the explicit purpose of entertainment. Color, then sound, then depth perspective, then motion detection, then spatial awareness were added to play consoles.
     
@@ -88,7 +90,7 @@ if c3 == 'augmented reality entertainer':
     Every now and again you also enjoy a good book.
     ''', wipe=False, topline=False)
 elif c3 == 'hydroponic farmer':
-    player.effects.append(effects['Biological'])
+    Obj.player.effects.append(Obj.effects['Biological'])
     saprint('''
     After 8 years of soil chemistry, plant genetics, and aquifer logistics you finally earned your place at one of the elite agricultural conglomerates.
     
@@ -96,7 +98,7 @@ elif c3 == 'hydroponic farmer':
     ''', wipe=False, topline=False)
 
 elif c3 == 'graph database developer':
-    player.effects.append(effects['Technical'])
+    Obj.player.effects.append(Obj.effects['Technical'])
     saprint('''
     The irony of information storage is that people who generate and use data often don't
     understand what their minds are doing at that moment.
@@ -106,7 +108,7 @@ elif c3 == 'graph database developer':
     You just wish you had friends.
     ''', wipe=False, topline=False)
 elif c3 == 'bioplastic athlete':
-    player.effects.append(effects['Physical'])
+    Obj.player.effects.append(Obj.effects['Physical'])
     saprint('''
     There are no men and women divisions in sports anymore, only the purist
     leagues and the bioplastics.
@@ -118,7 +120,7 @@ elif c3 == 'bioplastic athlete':
     At least you never stooped to doping. Those guys are cheaters.
     ''', wipe=False, topline=False)
 elif c3 == 'cybercivics professor':
-    player.effects.append(effects['Social'])
+    Obj.player.effects.append(Obj.effects['Social'])
     saprint('''
     When your civic duty (d)evolves into web questionnaires and e-Tax filing, cybersecurity
     becomes a patriotic topic.
@@ -126,7 +128,7 @@ elif c3 == 'cybercivics professor':
     Nothing has yet been invented to let students sleep through class undetected.
     ''', wipe=False, topline=False)
 elif c3 == 'nanosurgical clinician':
-    player.effects.append(effects['Biological'])
+    Obj.player.effects.append(Obj.effects['Biological'])
     saprint('''
     Miniaturized medical robots sometimes trigger Anaphylaxis or lesser immune system disorders,
     so they are often administered with anti-inflammatory treatments.
@@ -137,7 +139,7 @@ elif c3 == 'nanosurgical clinician':
     He was not sued on the condition that the codebase was permanently deleted.
     ''', wipe=False, topline=False)
 elif c3 == 'solar array technician':
-    player.effects.append(effects['Technical'])
+    Obj.player.effects.append(Obj.effects['Technical'])
     saprint('''
     You often wonder if a Dyson Sphere will ever be attempted. Let alone that, you
     wonder if even a Kardashev Type I civilization exists in the universe.
@@ -146,7 +148,7 @@ elif c3 == 'solar array technician':
     panels requires a lot of travel.
     ''', wipe=False, topline=False)
 elif c3 == 'autonomous drone mechanic':
-    player.effects.append(effects['Physical'])
+    Obj.player.effects.append(Obj.effects['Physical'])
     saprint('''
     You inherited a mid-size chop shop which specializes in drone repair. Most of the
     work is related to fizzled camera feeds or blown hydraulics. It's honest work.
@@ -157,7 +159,7 @@ elif c3 == 'autonomous drone mechanic':
     ''', wipe=False, topline=False)
 
 print("\nAnd your name is...\n")
-player.name = input('(Type your name):')
+Obj.player.name = input('(Type your name):')
 
 c = opt('"Almost forgot! I can\'t leave without my..."\n',
         [
@@ -172,30 +174,30 @@ c = opt('"Almost forgot! I can\'t leave without my..."\n',
 clrscr()
 
 if c == 1:
-    player.inventory.add(items['Laptop'])
-    player.base_stats.add(Stats(intellect = 1))
+    Obj.player.items.append(Obj.items['Laptop'])
+    Obj.player.base_stats.add(Stats(intellect = 1))
     print("You grab your laptop, obviously.")
     print("\n< +1 to Intellect >")
 elif c == 2:
-    player.inventory.add(items['Dog'])
-    player.base_stats.add(Stats(speed = 1))
+    Obj.player.items.append(Obj.items['Dog'])
+    Obj.player.base_stats.add(Stats(speed = 1))
     print("You let out a sharp whistle, and your canine companion clamors to your side.")
     print("\n< +1 to Speed >")
 elif c == 3:
-    player.inventory.add(items['Tazer'])
-    player.base_stats.add(Stats(strength = 1))
+    Obj.player.items.append(Obj.items['Tazer'])
+    Obj.player.base_stats.add(Stats(strength = 1))
     print("You hope never to have to use your tazer... again... sort of.")
     print("\n< +1 to Strength >")
 elif c == 4:
-    player.inventory.add(items['Scripture'])
-    player.base_stats.add(Stats(tenacity = 1))
+    Obj.player.items.append(Obj.items['Scripture'])
+    Obj.player.base_stats.add(Stats(tenacity = 1))
     print("There has never been a more critical time for faith.")
     print("You grab the tome.")
     print("\n< +1 to Tenacity >")
 elif c == 5:
-    player.inventory.add(items['Money'])
+    Obj.player.items.append(Obj.items['Money'])
     print('"Heh heh" ... You stash away your vast accumulation of wealth.')
-player.display()
+Obj.player.display()
 pause()
 
 Obj.game['next'] = 'e002_infiltration'
