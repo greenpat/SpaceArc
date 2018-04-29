@@ -24,7 +24,8 @@ def saprint(docstring='', wipe=True, topline=True):
     s = re.sub('\t', ' ',
                docstring)  # leading tabs (common) replaced throughout
     s = re.sub('^[\\n\\s]+|[\\n\\s]+$', '', s)  # leading/trailing space removed
-    s = re.sub('\\n +',' ',s)  # remove all tabbing or single spacing
+    s = re.sub('\\n? +',' ',s)  # remove all tabbing or single spacing
+    s = re.sub('(?<!\\n)[\\n](?!\\n)', ' ', s)  # single newline not counted
     s = re.sub('[\\n\\s]{2,}', ' {eol} ', s)  # marker for empty lines
 
     # Print up to 80 chars wide but preserve paragraphs
@@ -39,7 +40,10 @@ def saprint(docstring='', wipe=True, topline=True):
         elif nchar + len(c) > 80:
             print('')
             nchar = 0
-        print(c, end=' ')
+        if nchar + len(c) == 80:
+            print(c, end='')
+        else:
+            print(c, end=' ')
         nchar = nchar + len(c) + 1
     print('')
 
@@ -168,3 +172,35 @@ def phase():
     for i in picture:
         print(i, flush=True)
         time.sleep(.10)
+
+if __name__ == '__main__':
+    docstring = '''
+Amidst the panic and confusion you silently resolve to yourself -- you are leaving this planet.
+
+The airwaves buzz with pundits and guest experts suggesting how to manage the crisis, but you are not receptive to their advice.
+
+It is very possible that Earth will be spared a catastrophic impact or cooling event.
+It is also very possible that all life will be extinguished within days.
+
+Luckily for you, your community was chosen as an Ark build site several years ago. The massive vessel has been decades in the making, and employed a full third of your community.
+
+Let's get going!
+'''
+    saprint(docstring=docstring, wipe = False)
+
+    saprint(wipe=False, docstring='''
+            The wayward star Gliese 709 makes an uninvited pass through humankind's solar system, plunging a system which had found order for hundreds of thousands of years into chaos. A vast number of frozen, dormant Oort objects are dragged back into near-Earth trajectory. A number of irregular moons of Neptune and Uranus collide with their parent planets. At least one is thrown towards the inner solar system.
+
+            Humankind feverishly calculates collision paths and refurbishes its nuclear arsenal. It is all too uncertain whether the candle of civilization will finally be snuffed out.
+
+            It is decided that the long-duration interstellar colonization vessels will be launched immediately.
+            ''')
+    saprint('''
+        Miniaturized medical robots sometimes trigger Anaphylaxis or lesser immune system disorders,
+        so they are often administered with anti-inflammatory treatments.
+
+        A famous modern artist recently trained a surgical AI to invent knock-knock jokes and tell
+        them using sign language.
+
+        He was not sued on the condition that the codebase was permanently deleted.
+        ''', wipe=False)

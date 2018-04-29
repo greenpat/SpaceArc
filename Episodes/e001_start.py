@@ -191,8 +191,7 @@ elif c == 3:
 elif c == 4:
     Obj.player.items.append(Obj.items['Scripture'])
     Obj.player.base_stats.add(Stats(tenacity = 1))
-    print("There has never been a more critical time for faith.")
-    print("You grab the tome.")
+    print("There has never been a more critical time for faith. You grab the tome.")
     print("\n< +1 to Tenacity >")
 elif c == 5:
     Obj.player.items.append(Obj.items['Money'])
