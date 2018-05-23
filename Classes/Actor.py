@@ -19,6 +19,10 @@ class Actor:
             )
         )
 
+    def drop_temp(self):
+        [self.items.remove(x) for x in self.items if x.temporary]
+        [self.effects.remove(x) for x in self.effects if x.temporary]
+
     def display(self):
         temp_stats = self.stats
         ll, nl = 80, len(self.name)  # line length, name length

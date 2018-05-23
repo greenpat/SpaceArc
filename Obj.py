@@ -43,7 +43,7 @@ effects = {
     'Technical': Effect('Technical'),
     'Physical': Effect('Physical'),
     'Social': Effect('Social'),
-    'Password': Effect('Password')
+    'Password': Effect('Password', temporary=True)
 }
 
 # Global consistent items
@@ -53,8 +53,8 @@ items = {
     'Tazer': Item('Tazer'),
     'Scripture': Item('Scripture'),
     'Money': Item('Money'),
-    'Spiked Boots': Item('Spiked Boots'),
-    'Lye': Item('Lye')
+    'Spiked Boots': Item('Spiked Boots', temporary=True),
+    'Lye': Item('Lye', temporary=True)
 }
 
 if __name__ == '__main__':

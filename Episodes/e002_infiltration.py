@@ -356,11 +356,11 @@ def shed():
     if c == 2:
         saprint('< You grab the caustic bag of lye. >')
         pause()
-        Obj.player.inventory.add(Obj.items['Lye'])
+        Obj.player.items.append(Obj.items['Lye'])
     if c == 3:
         saprint('< You craft a set of spiked boots. >')
         pause()
-        Obj.player.inventory.add(Obj.items['Spiked Boots'])
+        Obj.player.items.append(Obj.items['Spiked Boots'])
     if c == 4:
         saprint('You stoke the cinders until a roaring blaze billows over the top of the treeline!\n\nYou watch the guard post and slip by when the sentry inevitably run towards the fire.')
         pause()
