@@ -9,7 +9,8 @@ game = {
     'dead': False,
     'turns': 0
 }
-player = Actor()
+player = Actor(strength=3, speed=3, intellect=3, tenacity=3)
+
 
 # Wipe the slate clean or possibly in future version load save
 def game_restart(start_chapter='e000_intro',
@@ -17,9 +18,11 @@ def game_restart(start_chapter='e000_intro',
                                    tenacity=3)):
     global game
     global player
-    game['next'] = start_chapter
-    game['dead'] = False
-    game['turns'] = 0
+    game = {
+        'next': start_chapter,
+        'dead': False,
+        'turns': 0
+    }
     player = save_player
 
 
