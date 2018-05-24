@@ -173,6 +173,20 @@ def phase():
         print(i, flush=True)
         time.sleep(.10)
 
+def end_message():
+    pause()
+    clrscr()
+    line()
+    print('')
+    print(Obj.game['dead'])
+    print('')
+    line()
+    print('')
+    print("Thanks for playing!")
+    print("Chapters: " + str(Obj.game['turns']))
+    print('')
+
+
 if __name__ == '__main__':
     docstring = '''
 Amidst the panic and confusion you silently resolve to yourself -- you are leaving this planet.

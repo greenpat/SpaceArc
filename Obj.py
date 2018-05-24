@@ -4,9 +4,12 @@ from Classes import *
 This module contains global objects and core functions for gameplay
 """
 
-game = {}
+game = {
+    'next': 'e000_intro',
+    'dead': False,
+    'turns': 0
+}
 player = Actor()
-
 
 # Wipe the slate clean or possibly in future version load save
 def game_restart(start_chapter='e000_intro',
@@ -14,11 +17,9 @@ def game_restart(start_chapter='e000_intro',
                                    tenacity=3)):
     global game
     global player
-    game = {
-        'next': start_chapter,
-        'dead': False,
-        'turns': 0
-    }
+    game['next'] = start_chapter
+    game['dead'] = False
+    game['turns'] = 0
     player = save_player
 
 

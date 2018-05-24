@@ -10,7 +10,6 @@ class test_Actor(unittest.TestCase):
         self.testman.items.append(Obj.items['Laptop'])
         self.testman.effects.append(Obj.effects['Resourceful'])
         self.testman.effects.append(Obj.effects['Password'])
-
         self.emptyman = Classes.Actor('Empty')
 
 
