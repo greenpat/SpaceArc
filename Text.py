@@ -2,6 +2,7 @@ import time
 import re
 import Obj
 import random
+import pyfiglet
 
 """
 This module contains functions related to parsing and cleaning text in order to
@@ -186,6 +187,8 @@ def end_message():
     print("Chapters: " + str(Obj.game['turns']))
     print('')
 
+def fancy_text(message:str):
+    pyfiglet.print_figlet(message, 'smslant')
 
 if __name__ == '__main__':
     docstring = '''

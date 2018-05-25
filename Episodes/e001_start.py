@@ -4,14 +4,7 @@ from Classes import *
 
 clrscr()
 line()
-print('''
-   ___                    __              
-  / _ \___ ___  ___ _____/ /___ _________ 
- / // / -_) _ \/ _ `/ __/ __/ // / __/ -_)
-/____/\__/ .__/\_,_/_/  \__/\_,_/_/  \__/ 
-        /_/                               
-
-''')
+fancy_text('Begin')
 saprint('''
 Amidst the panic and confusion you silently resolve to yourself -- you are leaving this planet.
 

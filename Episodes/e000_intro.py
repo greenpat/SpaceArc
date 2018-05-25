@@ -35,14 +35,7 @@ Please select an option.''',
     if c == 1:
         clrscr()
         line()
-        print('''
-   ___           __                  
-  / _ \_______  / /__  ___ ___ _____ 
- / ___/ __/ _ \/ / _ \/ _ `/ // / -_)
-/_/  /_/  \___/_/\___/\_, /\_,_/\__/ 
-                     /___/           
-        
-        ''')
+        fancy_text('Prologue')
         saprint('''
         2309 CE: An era of realization.
         

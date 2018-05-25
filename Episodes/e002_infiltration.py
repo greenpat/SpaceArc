@@ -3,13 +3,7 @@ import Obj
 
 clrscr()
 line()
-print(r'''
-   ____     ____ ____           __  _         
-  /  _/__  / _(_) / /________ _/ /_(_)__  ___ 
- _/ // _ \/ _/ / / __/ __/ _ `/ __/ / _ \/ _ \
-/___/_//_/_//_/_/\__/_/  \_,_/\__/_/\___/_//_/
-                                              
-''')
+fancy_text('Perimeter')
 saprint('''
 It won\'t be easy, but you need to get aboard that ark.
 
